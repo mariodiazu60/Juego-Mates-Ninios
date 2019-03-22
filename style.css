@@ -1,0 +1,97 @@
+body 
+{
+  background-image: url("https://farm2.staticflickr.com/2509/4170749202_5fe316f332_o.jpg");
+  background-position: 75%;
+  background-position-y: 40%;
+  margin: 0;                                                   /* Así la pagina ocupa todo el ancho */
+  background-color: #FAF8DA;
+  font-family: 'Open Sans', sans-serif;                        /* Google Fonts */
+}
+
+/* INCIO CSS HEADER*/
+header 
+{
+  text-align: center;                                          /* Centramos el texto del header */
+  background-color: #0da39be8;
+  border-radius: 0px 0px 200px 200px ;
+  box-shadow:5px 8px 60px 3px rgba(0,0,0,.50);
+  height: 8em;
+  position: sticky;
+}
+
+header > h1 
+{
+  font-size: 2.8em;
+  color: white;
+  margin: 0 auto;
+  padding: .9em 0;
+}
+/* FIN CSS HEADER */
+
+/* INICIO CSS CUERPO */
+#tarjetero
+{
+  display: flex;  /* Hace el contenido de esta caja Flexible */
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.tarjeta 
+{                                              
+  margin: 10em auto;    /* Añade espacio encima de la caja y la centra */
+  padding: 1em;
+  border-radius: 50px;
+  width: 20%; 
+  height: 9em;                                               
+  background-color: #69b210ef;                                  
+  box-shadow: 5px 8px 47px 3px rgba(0,0,0,.50);                
+  text-align: center;                                           
+  transition: .8s;                                              
+}
+  .tarjeta:hover
+  {
+      border-radius: 100px;
+      width: 25%;
+      box-shadow:5px 8px 47px 3px rgba(0,0,0,.85);
+      cursor: pointer;
+      background-color: #0da39b;
+  }
+  .tarjeta > img 
+  {/* Imagen del juego */
+    width: 5.4em;
+    height: 6em;
+  }
+
+  .tarjeta > div
+  {/* El div que contiene texto informativo del juego */
+    margin-left: 30px;
+    margin: 0;
+  }
+
+    .tarjeta > div > h2
+    {/* Texto informativo del juego */
+      color: white;
+      font-size: 25px;
+   
+    }
+/* FIN CSS CUERPO  */
+
+/* INICIO CSS FOOTER*/
+footer 
+{
+  align-self: center;
+  background-color: #0da39be8;
+  text-align: center;
+  border-radius: 40px 40px 0 0;
+  box-shadow:5px 8px 47px 3px rgba(0,0,0,.50);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+  footer > p 
+  {
+    color: white;
+    font-size: 1.5em;
+  }
+/* FIN CSS FOOTER */
