@@ -36,11 +36,22 @@ header > h1
   flex-direction: row;
   justify-content: space-around;
 }
+
+#tarjetero > #myCanvas
+{
+  margin: 3em auto;
+  border-radius: 20px;
+  width: 50%;
+  height: 40em;
+  box-shadow:5px 8px 47px 3px rgba(0,0,0,.85);
+  border: white;
+  background-color: #042725fa;
+}
 .tarjeta 
 {                                              
   margin: 2em;  
   padding: 1em;
-  border-radius: 50px;
+  border-radius: 100px;
   width: 28%; 
   height: 9em;                                               
   background-color: #69b210ef;                                  
@@ -50,12 +61,17 @@ header > h1
 }
   .tarjeta:hover
   {
-      border-radius: 100px;
-      width: 25%;
+      border-radius: 50px;
+      width: 29%;
       box-shadow:5px 8px 47px 3px rgba(0,0,0,.85);
       cursor: pointer;
       background-color: #0da39b;
   }
+  .tarjeta:active
+  {
+      background-color: #05423f;
+  }
+  
   .tarjeta > img 
   {/* Imagen del juego */
     width: 5.4em;
@@ -74,6 +90,8 @@ header > h1
       font-size: 25px;
    
     }
+
+
 /* FIN CSS CUERPO  */
 
 /* INICIO CSS FOOTER*/
