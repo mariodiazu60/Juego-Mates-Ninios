@@ -21,10 +21,10 @@ header
 
 header > h1 
 {
-  font-size: 2.8em;
+  font-size: 2em;
   color: white;
   margin: 0 auto;
-  padding: .9em 0;
+  padding: 1.2em 0;
 }
 /* FIN CSS HEADER */
 
@@ -38,10 +38,10 @@ header > h1
 }
 .tarjeta 
 {                                              
-  margin: 10em auto;    /* Añade espacio encima de la caja y la centra */
+  margin: 2em;  
   padding: 1em;
   border-radius: 50px;
-  width: 20%; 
+  width: 28%; 
   height: 9em;                                               
   background-color: #69b210ef;                                  
   box-shadow: 5px 8px 47px 3px rgba(0,0,0,.50);                
