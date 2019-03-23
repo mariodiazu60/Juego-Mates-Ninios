@@ -1,15 +1,5 @@
 $(document).ready(function() {
     console.log("Documento listo");
-    
-        //CON JQUERY
-        $("#btn-1").click(function()
-        {
-            //Position devuelve la distancia a los bordes, 
-            //con la dist al borde superior e izq obtenemos las coord X e Y
-            //Con Vanilla sería elementoHTML.getBoundingClientRect().top/left;
-            var coordenadas = $("#btn-1").position();
-            console.log("X ---> " + coordenadas.top + " Y ----> " + coordenadas.left);
-        }); 
 
         $("#myCanvas").attr("width",$("#myCanvas").width());
         $("#myCanvas").attr("height",$("#myCanvas").height());
@@ -20,7 +10,7 @@ $(document).ready(function() {
             //Dividimos el resultado entre dos para eliminar uno de los dos margenes del resultado
             var marginX = (($("#myCanvas").outerWidth(true)-$("#myCanvas").outerWidth())/2);
             var marginY = (($("#myCanvas").outerHeight(true)-$("#myCanvas").outerHeight())/2);
-            var coordenadas = $("#myCanvas").position();
+            var coordenadas = $("#myCanvas").position();   //Con Vanilla sería elementoHTML.getBoundingClientRect().top/left;
             var coordClickCanvas = [e.clientX - coordenadas.left - marginX,e.clientY - coordenadas.top - marginY]
             console.log(coordClickCanvas[0] + " - " + coordClickCanvas[1]);
 
