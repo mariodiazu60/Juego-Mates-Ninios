@@ -3,24 +3,59 @@ $(document).ready(function() {
 
         $("#myCanvas").attr("width",$("#myCanvas").width());
         $("#myCanvas").attr("height",$("#myCanvas").height());
+        var contador = 0;
+        var firstClick = [];
+        var secondClick = [];
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+
         $("#myCanvas").mouseup(function(e)
         {
-           
-            //outerxxxxx(true) nos da el ancho del elemento + sus margenes, outerxxxxx([false]) sin margenes
-            //Dividimos el resultado entre dos para eliminar uno de los dos margenes del resultado
+            //CAPTURAMOS LOS CLICKS SOBRE EL CANVAS
+            //outerWH(true) da el ancho del elemento + sus margenes, outerHW() sin margenes
             var marginX = (($("#myCanvas").outerWidth(true)-$("#myCanvas").outerWidth())/2);
             var marginY = (($("#myCanvas").outerHeight(true)-$("#myCanvas").outerHeight())/2);
-            var coordenadas = $("#myCanvas").position();   //Con Vanilla sería elementoHTML.getBoundingClientRect().top/left;
-            var coordClickCanvas = [e.clientX - coordenadas.left - marginX,e.clientY - coordenadas.top - marginY]
-            console.log(coordClickCanvas[0] + " - " + coordClickCanvas[1]);
+            //.position() nos devuelve la distancia hasta el borde de la página --- Con Vanilla sería elementoHTML.getBoundingClientRect().top/left;
+            var coordenadas = $("#myCanvas").position();  
 
             
-            var ctx = document.getElementById("myCanvas").getContext("2d");
-            ctx.fillStyle = "white"; // Color rojo
-            ctx.beginPath(); // Inicia trazo
-            ctx.arc(coordClickCanvas[0], coordClickCanvas[1], 10, 0, Math.PI * 2, true); // Dibujar un punto usando la funcion arc
-            ctx.fill(); // Termina trazo
-            
+            contador ++;
+            console.log("Contador = " + contador);
+            if(contador%2 != 0)
+            {
+                firstClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];
+                console.log("Coordenadas prim click = " + firstClick[0] + " - " + firstClick[1]);
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.lineWidth = 8;
+                ctx.arc(firstClick[0], firstClick[1], 11, 0, 2 * Math.PI, false);
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+               
+            }
+                else
+                {
+                    secondClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];
+                    console.log("Coordenadas seg click = " + secondClick[0] + " - " + secondClick[1]);
+                    
+                    ctx.beginPath();
+                    ctx.fillStyle = "green";
+                    ctx.lineWidth = 8;
+                    ctx.arc(secondClick[0], secondClick[1], 11, 0, 2 * Math.PI, false);
+                    ctx.fill();
+                    ctx.stroke(); 
+
+                    ctx.lineCap = "round";
+                    ctx.lineJoin = "round";
+                    ctx.lineWidth = 10;
+                    ctx.moveTo(firstClick[0], firstClick[1]);
+                    ctx.lineTo (secondClick[0], secondClick[1]);
+                    ctx.stroke(); 
+                    ctx.closePath();
+                }
+
+
         })
    
 });
