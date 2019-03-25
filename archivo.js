@@ -3,20 +3,22 @@ $(document).ready(function() {
 
     $("#myCanvas").ready(function()
     {
-        //Solución al problema de deformación según ratio del canvas
+         //Solución al problema de deformación según ratio del canvas
         $("#myCanvas").attr("width",$("#myCanvas").width());
         $("#myCanvas").attr("height",$("#myCanvas").height());
-
         //Variables para el juego
-        var contador = 0;
+        var count = 0;
         var firstClick = [];
         var secondClick = [];
         var ctx = document.getElementById("myCanvas").getContext("2d");
-        var img = new Image();
-        img.src = "1.jpg";
-        ctx.drawImage(img, 34, 12);
 
-    
+        var img = new Image();
+        img.src = "assets/1.jpg";
+        img.onload = function()
+        {
+        ctx.drawImage(img, 0, 0, $("#myCanvas").outerWidth(), $("#myCanvas").outerHeight());
+        }
+
         $("#myCanvas").mouseup(function(e)
         {
             //CAPTURAMOS LOS CLICKS SOBRE EL CANVAS
@@ -26,40 +28,48 @@ $(document).ready(function() {
             //.position() nos devuelve la distancia hasta el borde de la página 
             //Con Vanilla sería elementoHTML.getBoundingClientRect().top/left;
             var coordenadas = $("#myCanvas").position();  
+            
 
-            contador ++;
-            if(contador%2 != 0)
+            //Al primer click nos guardamos la coord inicial de la recta.
+            count ++;
+            if(count%2 != 0)
             {
                 firstClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];
-                ctx.beginPath();
-                ctx.fillStyle = "red";
-                ctx.lineWidth = 8;
-                ctx.arc(firstClick[0], firstClick[1], 11, 0, 2 * Math.PI, false);
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath(); 
+                drawCircles("#e830d8", 4, firstClick);
             }
+                //Al segundo click nos guardamos la segunda coord
                 else
                 {
-                    secondClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];
-                 
-                    ctx.beginPath();
-                    ctx.fillStyle = "green";
-                    ctx.lineWidth = 8;
-                    ctx.arc(secondClick[0], secondClick[1], 11, 0, 2 * Math.PI, false);
-                    ctx.fill();
-                    ctx.stroke(); 
-
-                    ctx.lineCap = "round";
-                    ctx.lineJoin = "round";
-                    ctx.lineWidth = 10;
-                    ctx.moveTo(firstClick[0], firstClick[1]);
-                    ctx.lineTo (secondClick[0], secondClick[1]);
-                    ctx.stroke(); 
-                    ctx.closePath();
-                    console.log("Coordenadas seg click = " + secondClick[0] + " - " + secondClick[1]);
+                    secondClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];   
+                    drawCircles("#ff7700", 4, secondClick);
                 }
+                //Una vez tenemos los dos pares de coordenadas dibujamos la linea
+                drawLines(4, "green");
         })
+
+        function drawCircles(color, lineWidth, coord = [])
+        {
+            ctx.beginPath();
+            ctx.fillStyle = color;
+            ctx.lineWidth = lineWidth;
+            ctx.strokeStyle = color;
+            ctx.arc(coord[0], coord[1], 8, 0, 2 * Math.PI, false);
+            ctx.fill();
+            ctx.stroke(); 
+            ctx.closePath();
+        }
+        function drawLines(lineWidth, color)
+        {
+            ctx.beginPath();
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = color;
+            ctx.lineWidth = lineWidth;
+            ctx.moveTo(firstClick[0], firstClick[1]);
+            ctx.lineTo (secondClick[0], secondClick[1]);
+            ctx.stroke(); 
+            ctx.closePath();
+        }
     })
    
 });
