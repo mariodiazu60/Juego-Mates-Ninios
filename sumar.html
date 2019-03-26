@@ -5,12 +5,12 @@
       <link type="text/css" rel="stylesheet" href="style.css">
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <script
-      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-      crossorigin="anonymous"></script>
-      <script
       src="http://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+      <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
       crossorigin="anonymous"></script>
       <script type="text/javascript" src="archivo.js"></script>
     </head>
@@ -19,14 +19,17 @@
       <header>
         <h1>¡APRENDE MATEMÁTICAS!</h1>
       </header>
-      <div id="tarjetero">
-        <section class="tarjeta">
-          <img src="assets/suma.png" alt="Imagen signo suma">
-          <div>         
-            <h2>¡SUMA!</h2>
-          </div>
+        <section>
+        	<h2>¡SUMA!</h2>
+	          	<div id="cont_suma">
+		        	<div id="imagenes1"></div>
+		        	<div id="imagenes2"></div>
+		        	<figure id="draggable"><img src="assets/apple.png" class="imagen"></figure>
+		        	<div id="droppable">
+		        		<p>ARRASTRA AQUÍ LAS MANZANAS</p>
+		        	</div>
+          		</div>
         </section>
-      </div>
 
       <footer>
         <p>
