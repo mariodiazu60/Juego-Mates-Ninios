@@ -10,13 +10,15 @@ $(document).ready(function() {
         var count = 0;
         var firstClick = [];
         var secondClick = [];
+        var coordYClicks = []; //Aquí nos guardamos la coord Y de todos los clicks sobre el canvas para comprobar si ha sido correcto.
+        var dibujoSolucionado = true; //Si todos los puntos se han colocado bien será true, si no será false
         var ctx = document.getElementById("myCanvas").getContext("2d");
 
         var img = new Image();
         img.src = "assets/1.jpg";
         img.onload = function()
         {
-        ctx.drawImage(img, 0, 0, $("#myCanvas").outerWidth(), $("#myCanvas").outerHeight());
+            ctx.drawImage(img, 0, 0, $("#myCanvas").outerWidth(), $("#myCanvas").outerHeight());
         }
 
         $("#myCanvas").mouseup(function(e)
@@ -29,7 +31,6 @@ $(document).ready(function() {
             //Con Vanilla sería elementoHTML.getBoundingClientRect().top/left;
             var coordenadas = $("#myCanvas").position();  
             
-
             //Al primer click nos guardamos la coord inicial de la recta.
             count ++;
             if(count%2 != 0)
@@ -37,6 +38,7 @@ $(document).ready(function() {
                 firstClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];
                 console.log("Click número" + count + " = [" + firstClick[0] + " , " + firstClick[1]+ "]");
                 drawCircles("#e830d8", 4, firstClick);
+                coordYClicks[count] = firstClick[1];
             }
                 //Al segundo click nos guardamos la segunda coord
                 else
@@ -44,9 +46,100 @@ $(document).ready(function() {
                     secondClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];   
                     console.log("Click número" + count + " = [" + secondClick[0] + " , " + secondClick[1]+ "]");
                     drawCircles("#ff7700", 4, secondClick);
+                    coordYClicks[count] = secondClick[1];
                 }
                 //Una vez tenemos los dos pares de coordenadas dibujamos la linea
                 drawLines(4, "green");
+        })
+
+        $("#comprobar").click(function()
+        {
+            if(coordYClicks.length<14)
+            {
+                dibujoSolucionado = false; 
+            } 
+                else
+                {
+                    for(var i = 1; i<coordYClicks.length && dibujoSolucionado; ++i)
+                    {
+                        switch(i)
+                        {
+                            case 1:
+                                    if(coordYClicks[i]>70 && coordYClicks[i]<90)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 2:
+                                    if(coordYClicks[i]>60 && coordYClicks[i]<80)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 3:
+                                    if(coordYClicks[i]>90 && coordYClicks[i]<110)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 4:
+                                    if(coordYClicks[i]>150 && coordYClicks[i]<174)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 5:
+                                    if(coordYClicks[i]>220 && coordYClicks[i]<243)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 6:
+                                    if(coordYClicks[i]>275 && coordYClicks[i]<295)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 7:
+                                    if(coordYClicks[i]>275 && coordYClicks[i]<295)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 8:
+                                    if(coordYClicks[i]>285 && coordYClicks[i]<305)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 9:
+                                    if(coordYClicks[i]>255 && coordYClicks[i]<275)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 10:
+                                    if(coordYClicks[i]>200 && coordYClicks[i]<220)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 11:
+                                    if(coordYClicks[i]>125 && coordYClicks[i]<145)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 12:
+                                    if(coordYClicks[i]>40 && coordYClicks[i]<60)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                            case 13:
+                                    if(coordYClicks[i]>40 && coordYClicks[i]<60)
+                                    {
+                                        dibujoSolucionado = true;
+                                    } else dibujoSolucionado = false; break;
+                        }
+                    }
+                }   
+            if(dibujoSolucionado)
+            {
+                window.alert("SOLUCIONADO");
+            }   
+            else{
+                window.alert("NO SOLUCIONADO");
+                location.reload();
+            }
         })
 
         function drawCircles(color, lineWidth, coord = [])
