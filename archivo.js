@@ -35,12 +35,14 @@ $(document).ready(function() {
             if(count%2 != 0)
             {
                 firstClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];
+                console.log("Click número" + count + " = [" + firstClick[0] + " , " + firstClick[1]+ "]");
                 drawCircles("#e830d8", 4, firstClick);
             }
                 //Al segundo click nos guardamos la segunda coord
                 else
                 {
                     secondClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];   
+                    console.log("Click número" + count + " = [" + secondClick[0] + " , " + secondClick[1]+ "]");
                     drawCircles("#ff7700", 4, secondClick);
                 }
                 //Una vez tenemos los dos pares de coordenadas dibujamos la linea
