@@ -22,13 +22,20 @@ $(document).ready(function() {
 
     function colocarNumeros() {
     	let numeros = generarNumeros(),
-        output = "<figure>";
+        output1 = "<figure>", output2 = output1; 
 
-        for(let i=0;i<numeros.length;i++) {
-            output
+        for(let i=0;i<numeros[0];i++) {
+            output1 += "<img src='assets/apple.png' class='imagen'>";
+        }
+
+        for(let i=0;i<numeros[1];i++) {
+            output2 += "<img src='assets/apple.png' class='imagen'>";
         }
     	
-        output = "</figure>";
+        output1 += "</figure>";
+        output2 += "</figure>"
+        $("#imagenes1").html(output1);
+        $("#imagenes2").html(output2);
 
     	return false;
     }
