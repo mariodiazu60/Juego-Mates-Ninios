@@ -66,7 +66,8 @@ header > h1
   border : 0.3em solid black;
   background-color: #777;
   display: inline-block;  
-  vertical-align:middle; 
+  vertical-align:middle;
+  margin-left: 1em;
 }
 #tarjetero
 {
