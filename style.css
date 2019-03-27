@@ -29,6 +29,37 @@ header > h1
 /* FIN CSS HEADER */
 
 /* INICIO CSS CUERPO */
+section>h2{
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+  padding: .2em 0;
+}
+.operacion{
+  border-radius: 50px;
+  background-color: white;
+  margin: 0 2em 0 2em;
+}
+.imagenes{
+  text-align: center;
+}
+#imagenes1{
+  padding-top: 1em;
+}
+#imagenes2{
+  padding-bottom: 1em;
+}
+.resultado{
+  border-radius: 50px;
+  background-color: #4082ed;
+  margin: 3em 2em 0 2em;
+}
+.signo{
+  margin: 0;
+  text-align: center;
+  font-size: 3em;
+  color: black;
+}
 .imagen{
   height: 5.65em;
   width: 5.65em;
@@ -48,6 +79,7 @@ header > h1
   margin-right: 50px;
   vertical-align:middle;
   opacity: 0.75;
+  cursor: pointer;
 }
 #draggable{
   width: 5.7em;
@@ -56,19 +88,22 @@ header > h1
   border : 0.25em solid gray;
   background-color: red;
   display: inline-block;
-  margin-right: 50px;
-  vertical-align:middle; 
+  margin-right: .5em;
+  margin-left: 1.5em;
+  vertical-align:middle;
+  cursor: pointer;
 }
 #droppable{
-  width: 7.2em;
-  height: 8em;
+  width: 20em;
+  height: 7.2em;
   padding: 0.5em;
   border : 0.3em solid black;
   background-color: #777;
-  display: inline-block;  
+  display: inline-block;
   vertical-align:middle;
-  margin-left: 1em;
+  margin: 1em 0 1em 1em;
 }
+
 #tarjetero
 {
   display: flex;  /* Hace el contenido de esta caja Flexible */
@@ -78,7 +113,7 @@ header > h1
 }
 .tarjeta 
 {                                              
-  margin: 2em;    /* Añade espacio encima de la caja y la centra */
+  margin: 2em;
   padding: 1em;
   border-radius: 50px;
   width: 28%; 
