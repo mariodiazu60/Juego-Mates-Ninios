@@ -91,6 +91,19 @@ header > h1
    
     }
 
+#imagen {
+      margin: 5em;
+      position:absolute;
+      width: 50%;;
+      height: 60%;
+  }
+#zona_dibujo {
+      margin: 5em;
+      position:absolute;
+      width: 50%;;
+      height: 60%;
+  }
+
 
 /* FIN CSS CUERPO  */
 

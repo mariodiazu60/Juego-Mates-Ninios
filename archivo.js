@@ -1,50 +1,47 @@
 $(document).ready(function() {
     console.log("Documento listo");
 
-    $("#myCanvas").ready(function()
+    $("#zona_dibujo").ready(function()
     {
-         //Solución al problema de deformación según ratio del canvas
-        $("#myCanvas").attr("width",$("#myCanvas").width());
-        $("#myCanvas").attr("height",$("#myCanvas").height());
+         
         //Variables para el juego
-        var count = 0;
-        var firstClick = [];
-        var secondClick = [];
-        var coordYClicks = []; //Aquí nos guardamos la coord Y de todos los clicks sobre el canvas para comprobar si ha sido correcto.
-        var dibujoSolucionado = true; //Si todos los puntos se han colocado bien será true, si no será false
-        var ctx = document.getElementById("myCanvas").getContext("2d");
+        var count = 0;                                                                              //contadoor de clicks totales sobre el canvas
+        var indiceImagen = 1;                                                                       //Contador para saber en que nivel del juego estamos
+        var firstClick = [];                                                                        //Array para obtener el punto inicial de la recta
+        var secondClick = [];                                                                       //Array para obtener el punto final de la recta
+        var coordYClicks = [];                                                                      //Guardamos la pos Y de los clicks sobre el canvas para comprobar si ha sido en el sitio correcto.
+        var dibujoSolucionado = true;                                                               //Si todos los puntos se han colocado bien será true, si no será false
+        var ctx_zona_dibujo = document.getElementById("zona_dibujo").getContext("2d");              //Obtenemos los contextos de ambos canvas
+        var ctx_imagen = document.getElementById("imagen").getContext("2d");
+        var marginX = (($("#zona_dibujo").outerWidth(true)-$("#zona_dibujo").outerWidth())/2);      //outerWH(true) da el ancho del elemento + sus margenes, outerHW() sin margenes
+        var marginY = (($("#zona_dibujo").outerHeight(true)-$("#zona_dibujo").outerHeight())/2);
+        var coordenadas = $("#zona_dibujo").position();                                             //.position() nos devuelve la distancia hasta el borde de la página 
+        var img = new Image();                                                                      //Variables para la img sobre el canvas
+        //Solución al problema de deformación según ratio del canvas
+        $("#imagen").attr("width",$("#imagen").width());
+        $("#imagen").attr("height",$("#imagen").height());
+        $("#zona_dibujo").attr("width",$("#zona_dibujo").width());
+        $("#zona_dibujo").attr("height",$("#zona_dibujo").height());
+        
+        //Cargamos la primera imagen para empezar el juego
+        cargarImagen(indiceImagen);
 
-        var img = new Image();
-        img.src = "assets/1.jpg";
-        img.onload = function()
-        {
-            ctx.drawImage(img, 0, 0, $("#myCanvas").outerWidth(), $("#myCanvas").outerHeight());
-        }
-
-        $("#myCanvas").mouseup(function(e)
+        $("#zona_dibujo").mouseup(function(e)
         {
             //CAPTURAMOS LOS CLICKS SOBRE EL CANVAS
-            //outerWH(true) da el ancho del elemento + sus margenes, outerHW() sin margenes
-            var marginX = (($("#myCanvas").outerWidth(true)-$("#myCanvas").outerWidth())/2);
-            var marginY = (($("#myCanvas").outerHeight(true)-$("#myCanvas").outerHeight())/2);
-            //.position() nos devuelve la distancia hasta el borde de la página 
-            //Con Vanilla sería elementoHTML.getBoundingClientRect().top/left;
-            var coordenadas = $("#myCanvas").position();  
-            
             //Al primer click nos guardamos la coord inicial de la recta.
             count ++;
             if(count%2 != 0)
             {
+                //Obtenemos la posicion del click sobre el canvas = posicion del click sobre la ventana - distancia del canvas al margen izquierdo - ancho del canvas
                 firstClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];
-                console.log("Click número" + count + " = [" + firstClick[0] + " , " + firstClick[1]+ "]");
                 drawCircles("#e830d8", 4, firstClick);
                 coordYClicks[count] = firstClick[1];
             }
                 //Al segundo click nos guardamos la segunda coord
                 else
                 {
-                    secondClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];   
-                    console.log("Click número" + count + " = [" + secondClick[0] + " , " + secondClick[1]+ "]");
+                    secondClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];  
                     drawCircles("#ff7700", 4, secondClick);
                     coordYClicks[count] = secondClick[1];
                 }
@@ -54,117 +51,189 @@ $(document).ready(function() {
 
         $("#comprobar").click(function()
         {
-            if(coordYClicks.length<14)
+            if(indiceImagen == 1)
             {
-                dibujoSolucionado = false; 
-            } 
-                else
+                if(coordYClicks.length<14)
                 {
-                    for(var i = 1; i<coordYClicks.length && dibujoSolucionado; ++i)
+                    dibujoSolucionado = false; 
+                } 
+                    else
                     {
-                        switch(i)
+                        for(var i = 1; i<coordYClicks.length && dibujoSolucionado; ++i)
                         {
-                            case 1:
-                                    if(coordYClicks[i]>70 && coordYClicks[i]<90)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 2:
-                                    if(coordYClicks[i]>60 && coordYClicks[i]<80)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 3:
-                                    if(coordYClicks[i]>90 && coordYClicks[i]<110)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 4:
-                                    if(coordYClicks[i]>150 && coordYClicks[i]<174)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 5:
-                                    if(coordYClicks[i]>220 && coordYClicks[i]<243)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 6:
-                                    if(coordYClicks[i]>275 && coordYClicks[i]<295)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 7:
-                                    if(coordYClicks[i]>275 && coordYClicks[i]<295)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 8:
-                                    if(coordYClicks[i]>285 && coordYClicks[i]<305)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 9:
-                                    if(coordYClicks[i]>255 && coordYClicks[i]<275)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 10:
-                                    if(coordYClicks[i]>200 && coordYClicks[i]<220)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 11:
-                                    if(coordYClicks[i]>125 && coordYClicks[i]<145)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 12:
-                                    if(coordYClicks[i]>40 && coordYClicks[i]<60)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
-                            case 13:
-                                    if(coordYClicks[i]>40 && coordYClicks[i]<60)
-                                    {
-                                        dibujoSolucionado = true;
-                                    } else dibujoSolucionado = false; break;
+                            switch(i)
+                            {
+                                case 1:
+                                        if(coordYClicks[i]>70 && coordYClicks[i]<170)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 2:
+                                        if(coordYClicks[i]>80 && coordYClicks[i]<160)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 3:
+                               
+                                        if(coordYClicks[i]>100 && coordYClicks[i]<190)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 4:
+                                        if(coordYClicks[i]>170 && coordYClicks[i]<260)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 5:
+                                        if(coordYClicks[i]>230 && coordYClicks[i]<350)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 6:
+                                        if(coordYClicks[i]>285 && coordYClicks[i]<430)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 7:
+                                        if(coordYClicks[i]>295 && coordYClicks[i]<430)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 8:
+                                        if(coordYClicks[i]>295 && coordYClicks[i]<450)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 9:
+                                        if(coordYClicks[i]>265 && coordYClicks[i]<400)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 10:
+                                        if(coordYClicks[i]>220 && coordYClicks[i]<310)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 11:
+                                        if(coordYClicks[i]>145 && coordYClicks[i]<225)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 12:
+                                        if(coordYClicks[i]>60 && coordYClicks[i]<140)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                                case 13:
+                                        if(coordYClicks[i]>60 && coordYClicks[i]<140)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
                         }
                     }
-                }   
+                }
+            }
+            else{
+                if(coordYClicks.length<10)
+                {
+                    dibujoSolucionado = false; 
+                } 
+                    else
+                    {
+                        for(var i = 1; i<coordYClicks.length && dibujoSolucionado; ++i)
+                        {
+                            switch(i)
+                            {
+                                case 1:
+                                        if(coordYClicks[i]>70 && coordYClicks[i]<170)
+                                        {
+                                            dibujoSolucionado = true;
+                                        } else dibujoSolucionado = false; break;
+                            }
+                        }
+                    }
+            }   
+
             if(dibujoSolucionado)
             {
                 window.alert("SOLUCIONADO");
             }   
-            else{
+            else
+            {
                 window.alert("NO SOLUCIONADO");
                 location.reload();
             }
         })
 
+        $("#anterior").click(function()
+        {
+            
+            if(indiceImagen == 2)
+            {   
+                ctx_zona_dibujo.clearRect(0, 0, $("#zona_dibujo").outerWidth(), $("#zona_dibujo").outerHeight());
+                dibujoSolucionado = true;
+                coordYClicks = [];
+                firstClick = []
+                secondClick = [];
+                count = 0;
+                --indiceImagen;
+                console.log("Estas en la pagina" + indiceImagen);
+                cargarImagen(indiceImagen);
+            }
+        })
+
+        $("#siguiente").click(function()
+        {
+         
+            if(indiceImagen == 1)
+            {
+                ctx_zona_dibujo.clearRect(0, 0, $("#zona_dibujo").outerWidth(), $("#zona_dibujo").outerHeight());
+                dibujoSolucionado = true;
+                coordYClicks = [];
+                firstClick = []
+                secondClick = [];
+                count = 0;
+                ++indiceImagen;
+                console.log("Estas en la pagina" + indiceImagen);
+                cargarImagen(indiceImagen);
+            }
+        })
+
+        function cargarImagen(indiceImagen)
+        {
+            img.src = "assets/" + indiceImagen + ".jpg";
+            //Cargamos la imagen sobre el canvas
+            img.onload = function()
+            {
+                ctx_imagen.drawImage(img, 0, 0, $("#imagen").outerWidth(), $("#imagen").outerHeight());
+            }  
+        }
+
         function drawCircles(color, lineWidth, coord = [])
         {
-            ctx.beginPath();
-            ctx.fillStyle = color;
-            ctx.lineWidth = lineWidth;
-            ctx.strokeStyle = color;
-            ctx.arc(coord[0], coord[1], 8, 0, 2 * Math.PI, false);
-            ctx.fill();
-            ctx.stroke(); 
-            ctx.closePath();
+            ctx_zona_dibujo.beginPath();
+            ctx_zona_dibujo.fillStyle = color;
+            ctx_zona_dibujo.lineWidth = lineWidth;
+            ctx_zona_dibujo.strokeStyle = color;
+            ctx_zona_dibujo.arc(coord[0], coord[1], 8, 0, 2 * Math.PI, false);
+            ctx_zona_dibujo.fill();
+            ctx_zona_dibujo.stroke(); 
+            ctx_zona_dibujo.closePath();
         }
+
         function drawLines(lineWidth, color)
         {
-            ctx.beginPath();
-            ctx.lineCap = "round";
-            ctx.lineJoin = "round";
-            ctx.strokeStyle = color;
-            ctx.lineWidth = lineWidth;
-            ctx.moveTo(firstClick[0], firstClick[1]);
-            ctx.lineTo (secondClick[0], secondClick[1]);
-            ctx.stroke(); 
-            ctx.closePath();
+            ctx_zona_dibujo.beginPath();
+            ctx_zona_dibujo.lineCap = "round";
+            ctx_zona_dibujo.lineJoin = "round";
+            ctx_zona_dibujo.strokeStyle = color;
+            ctx_zona_dibujo.lineWidth = lineWidth;
+            ctx_zona_dibujo.moveTo(firstClick[0], firstClick[1]);
+            ctx_zona_dibujo.lineTo (secondClick[0], secondClick[1]);
+            ctx_zona_dibujo.stroke(); 
+            ctx_zona_dibujo.closePath();
         }
+
     })
    
 });
