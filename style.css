@@ -35,6 +35,30 @@ section>h2{
   color: white;
   padding: .2em 0;
 }
+/*EL CSS BUENO PARA LOS MENSAJES MODALES O EMERGENTES*/
+section>div[data-pagina="fondo"]{
+  display: none; /* Hidden by default */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+}
+section>div[data-pagina="fondo"]>div[data-pagina="modal"]{
+  text-align: center;
+  background-color: #fff;
+  margin: .6em;
+}
+section>div[data-pagina="fondo"]>div[data-pagina="modal"]>p{
+  background-color: #fff;
+  padding: .6em;    
+}
+section>div[data-pagina="fondo"]>div[data-pagina="modal"]>footer{
+  text-align: center;
+  background-color: #42f465;
+}
+/*FIN DEL CODIGO BUENO*/
 .operacion{
   border-radius: 50px;
   background-color: white;

@@ -30,7 +30,8 @@ $(document).ready(function() {
                 let cont_res = document.getElementById("outerwrapper");
 
                 if (res==cont_res.getElementsByTagName("figure").length) {
-                    console.log("LISTO");
+                    console.log("SUMA CORRECTA");
+                    mostrarVentana("","");
                 }
             } else {
                 let cont1 = document.getElementById("imop1"), cont2 = document.getElementById("imop2");
@@ -38,7 +39,8 @@ $(document).ready(function() {
                 let cont_res = document.getElementsByClassName("outerwrapper");
 
                 if (res==cont_res.getElementsByTagName("figure").length) {
-                    console.log("LISTO");
+                    console.log("RESTA CORRECTA");
+                    mostrarVentana("","");
                 }
             }
         },
@@ -72,3 +74,69 @@ $(document).ready(function() {
 
         return false;
     }
+
+    /*MENSAJES EMERGNETES O MODALES(COMO TU QUIERAS LLAMARLOS)*/
+function mostrarVentana(texto_mostrar, emisor) {
+    
+    if (emisor!='coment_correcto' && emisor!='coment_incorrecto' && emisor!='coment_mal') {
+        var cuerpo = document.getElementsByTagName("BODY")[0];
+        var ventana = document.getElementById('myModal');
+        var ventana1 = document.getElementById('miVentana');
+        var texto = document.getElementById('textoModal');
+        cuerpo.style.overflow = 'hidden';
+        texto.innerHTML = texto_mostrar;
+        ventana1.style.left = ((document.body.clientWidth-350) / 2) +  'px';
+        ventana.style.display = 'block';
+    } else {
+        var ventana = document.getElementById('miVentana2');
+        var texto = document.getElementById('textoModal2');
+        texto.innerHTML = texto_mostrar;
+        ventana.style.marginTop = '1em';
+        ventana.style.left = ((document.body.clientWidth-350) / 2) +  'px';
+        ventana.style.display = 'block';
+    }
+
+    if(emisor == 'registro') {              
+        var botonModal= document.getElementById('botonModal');
+        document.getElementById("miVentana").focus();
+        botonModal.onclick = function() {
+            window.location.href = 'login.html';
+        }
+    }
+
+    if (emisor == 'login_incorrecto') {     
+        var botonModal= document.getElementById('botonModal');
+        document.getElementById("miVentana").focus();
+        botonModal.onclick = function() {
+            ventana.style.display = 'none';
+            document.getElementById('login').focus();
+        }
+    }
+
+    if (emisor == 'voto') {
+        var botonModal= document.getElementById('botonModal');
+        document.getElementById("miVentana").focus();
+        botonModal.onclick = function() {
+            cuerpo.style.overflow = 'auto';
+            ventana.style.display = 'none';
+        }
+    }
+
+    if (emisor == 'coment_correcto') {
+        var botonModal= document.getElementById('botonModal2');
+        document.getElementById("miVentana").focus();
+        botonModal.onclick = function() {
+            ventana.style.display = 'none';
+            document.getElementById('comentame').reset();
+        }
+    }
+
+    if (emisor == 'receta_bien') {
+        var botonModal= document.getElementById('botonModal');
+        document.getElementById("miVentana").focus();
+        botonModal.onclick = function() {
+            ventana.style.display = 'none';
+            window.location = './index.html';
+        }
+    }
+}
