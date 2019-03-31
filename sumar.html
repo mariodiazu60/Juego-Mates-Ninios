@@ -15,7 +15,7 @@
       <script type="text/javascript" src="archivo.js"></script>
     </head>
 
-    <body onload="colocarNumeros();">
+    <body onload="colocarNumeros();activarVideo();">
       <header>
         <h1>¡APRENDE MATEMÁTICAS!</h1>
       </header>
@@ -33,8 +33,15 @@
               <div data-pagina="fondo" id="myModal">
                 <div data-pagina="modal" id="miVentana">
                   <p id="textoModal"></p>
+                  <video controls autoplay><source src="assets/sumar.mp4" type="video/mp4"></video>
                   <footer>
-                    <button id="botonModal">Aceptar</button>
+                    <div id="botones">
+                      <button id="botonModal1"></button>
+                      <button id="botonModal2"></button>
+                      <button id="botonModal3"></button>
+                    </div>
+                    <button id="pulsar"></button>
+                    <button id="aprender" onclick="cerrarModal();">¡APRENDER!</button>
                   </footer>
                 </div>
               </div>
