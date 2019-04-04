@@ -48,6 +48,25 @@ $(document).ready(function() {
     })
 });
 
+    function comprobarResta() {
+        let num1 = document.getElementById("imagenes1").getElementsByTagName("img").length;
+        let num2 = document.getElementById("imagenes2").getElementsByTagName("img").length;
+
+        if (num1<=num2) {
+        	let cont = num2-num1,
+        	output = "<img src='assets/apple.png' class='imagen'>";
+
+        	if (cont==0)
+        		document.getElementById("imagenes1").getElementsByTagName("figure")[0].innerHTML += output;
+        	else {
+        		for (let i=0;i<cont;i++)
+        			output += "<img src='assets/apple.png' class='imagen'>";
+
+        		document.getElementById("imagenes1").getElementsByTagName("figure")[0].innerHTML += output;
+        	}
+        }
+    }
+
     function generarNumeros() {
         let ran1 = Math.floor((Math.random()*5)+1),
         ran2 = Math.floor((Math.random()*5)+1);
@@ -77,6 +96,38 @@ $(document).ready(function() {
 
 function cargarVideo() {
     sessionStorage.setItem("flagVideo","si");
+}
+
+function cargarResultados() {
+    if (sessionStorage.getItem("aciertosSuma")==null) {
+        sessionStorage.setItem("aciertosSuma", "0");
+        sessionStorage.removeItem("aciertosSuma");
+    }
+
+    if (sessionStorage.getItem("aciertosResta")==null) {
+        sessionStorage.setItem("aciertosResta", "0");
+        sessionStorage.removeItem("aciertosResta");
+    }
+
+    if (sessionStorage.getItem("fallosSuma")==null) {
+        sessionStorage.setItem("fallosSuma", "0");
+        sessionStorage.removeItem("fallosSuma");
+    }
+
+    if (sessionStorage.getItem("fallosResta")==null) {
+        sessionStorage.setItem("fallosResta", "0");
+        sessionStorage.removeItem("fallosResta");
+    }
+
+    if (sessionStorage.getItem("intentosSuma")==null) {
+        sessionStorage.setItem("intentosSuma", "0");
+        sessionStorage.removeItem("intentosSuma");
+    }
+
+    if (sessionStorage.getItem("intentosResta")==null) {
+        sessionStorage.setItem("intentosResta", "0");
+        sessionStorage.removeItem("intentosResta");
+    }
 }
 
 function activarVideo() {
@@ -127,30 +178,27 @@ function mostrarVentana(texto_mostrar, emisor) {
             switch (i) {
                 case 0:
                     if (botonModal1.innerText=="") {
-                        let aleatorio = Math.floor((Math.random()*10)+1);
-
-                        if (aleatorio==res)
-                            aleatorio = aleatorio++;
+                        let aleatorio = Math.floor((Math.random()*(res-1))+1);
 
                         botonModal1.innerText = aleatorio;
                     }
                     break;
                 case 1:
                     if (botonModal2.innerText=="") {
-                        let aleatorio = Math.floor((Math.random()*10)+1);
-
-                        if (aleatorio==res)
-                            aleatorio = aleatorio++;
+                        let aleatorio = Math.floor((Math.random()*10)+(res+1));
 
                         botonModal2.innerText = aleatorio;
                     }
                     break;
                 case 2:
-                    if (botonModal3.innerText=="") {
-                        let aleatorio = Math.floor((Math.random()*10)+1);
+                    if (botonModal3.innerText == "") {
+                        let aleatorio = 0;
+                        let bt1 = parseInt(botonModal1.innerText, 10);
 
-                        if (aleatorio==res)
-                            aleatorio = aleatorio++;
+                        if (bt1==res)
+                            aleatorio = Math.floor((Math.random()*(res-1))+1);                           
+                        else
+                            aleatorio = Math.floor((Math.random()*10)+(res+1));
 
                         botonModal3.innerText = aleatorio;
                     }
@@ -165,11 +213,45 @@ function mostrarVentana(texto_mostrar, emisor) {
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
                 pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
+
+                if (sessionStorage.getItem("aciertosSuma")==null)
+                    sessionStorage.setItem("aciertosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("aciertosSuma");
+                    oks++;
+                    sessionStorage.setItem("aciertosSuma", oks);
+                }
+
+                if (sessionStorage.getItem("intentosSuma")==null)
+                    sessionStorage.setItem("intentosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("intentosSuma");
+                    oks++;
+                    sessionStorage.setItem("intentosSuma", oks);
+                }
+
                 pulsar.onclick = function() {
                     location.reload();
                 }
-            } else
+            } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+
+                if (sessionStorage.getItem("fallosSuma")==null)
+                    sessionStorage.setItem("fallosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("fallosSuma");
+                    oks++;
+                    sessionStorage.setItem("fallosSuma", oks);
+                }
+
+                if (sessionStorage.getItem("intentosSuma")==null)
+                    sessionStorage.setItem("intentosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("intentosSuma");
+                    oks++;
+                    sessionStorage.setItem("intentosSuma", oks);
+                }
+            }
         }
 
         botonModal2.onclick = function() {
@@ -178,11 +260,45 @@ function mostrarVentana(texto_mostrar, emisor) {
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
                 pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
+
+                if (sessionStorage.getItem("aciertosSuma")==null)
+                    sessionStorage.setItem("aciertosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("aciertosSuma");
+                    oks++;
+                    sessionStorage.setItem("aciertosSuma", oks);
+                }
+
+                if (sessionStorage.getItem("intentosSuma")==null)
+                    sessionStorage.setItem("intentosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("intentosSuma");
+                    oks++;
+                    sessionStorage.setItem("intentosSuma", oks);
+                }
+
                 pulsar.onclick = function() {
                     location.reload();
                 }
-            } else
+            } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+
+                if (sessionStorage.getItem("fallosSuma")==null)
+                    sessionStorage.setItem("fallosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("fallosSuma");
+                    oks++;
+                    sessionStorage.setItem("fallosSuma", oks);
+                }
+
+                if (sessionStorage.getItem("intentosSuma")==null)
+                    sessionStorage.setItem("intentosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("intentosSuma");
+                    oks++;
+                    sessionStorage.setItem("intentosSuma", oks);
+                }
+            }
         }
 
         botonModal3.onclick = function() {
@@ -191,11 +307,45 @@ function mostrarVentana(texto_mostrar, emisor) {
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
                 pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
+
+                if (sessionStorage.getItem("aciertosSuma")==null)
+                    sessionStorage.setItem("aciertosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("aciertosSuma");
+                    oks++;
+                    sessionStorage.setItem("aciertosSuma", oks);
+                }
+
+                if (sessionStorage.getItem("intentosSuma")==null)
+                    sessionStorage.setItem("intentosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("intentosSuma");
+                    oks++;
+                    sessionStorage.setItem("intentosSuma", oks);
+                }
+
                 pulsar.onclick = function() {
                     location.reload();
                 }
-            } else
+            } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+
+                if (sessionStorage.getItem("fallosSuma")==null)
+                    sessionStorage.setItem("fallosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("fallosSuma");
+                    oks++;
+                    sessionStorage.setItem("fallosSuma", oks);
+                }
+
+                if (sessionStorage.getItem("intentosSuma")==null)
+                    sessionStorage.setItem("intentosSuma", 1);
+                else {
+                    let oks = sessionStorage.getItem("intentosSuma");
+                    oks++;
+                    sessionStorage.setItem("intentosSuma", oks);
+                }
+            }
         }
     }
 
@@ -223,30 +373,27 @@ function mostrarVentana(texto_mostrar, emisor) {
             switch (i) {
                 case 0:
                     if (botonModal1.innerText=="") {
-                        let aleatorio = Math.floor((Math.random()*10)+1);
-
-                        if (aleatorio==res)
-                            aleatorio = aleatorio++;
+                        let aleatorio = Math.floor((Math.random()*(res-1))+1);
 
                         botonModal1.innerText = aleatorio;
                     }
                     break;
                 case 1:
                     if (botonModal2.innerText=="") {
-                        let aleatorio = Math.floor((Math.random()*10)+1);
-
-                        if (aleatorio==res)
-                            aleatorio = aleatorio++;
+                        let aleatorio = Math.floor((Math.random()*10)+(res+1));
 
                         botonModal2.innerText = aleatorio;
                     }
                     break;
                 case 2:
-                    if (botonModal3.innerText=="") {
-                        let aleatorio = Math.floor((Math.random()*10)+1);
+                    if (botonModal3.innerText == "") {
+                        let aleatorio = 0;
+                        let bt1 = parseInt(botonModal1.innerText, 10);
 
-                        if (aleatorio==res)
-                            aleatorio = aleatorio++;
+                        if (bt1==res)
+                            aleatorio = Math.floor((Math.random()*(res-1))+1);                           
+                        else
+                            aleatorio = Math.floor((Math.random()*10)+(res+1));
 
                         botonModal3.innerText = aleatorio;
                     }
@@ -255,43 +402,145 @@ function mostrarVentana(texto_mostrar, emisor) {
         }
 
         document.getElementById("miVentana").focus();
-        botonModal1.onclick = function() {
-            if (botonModal1.innerText==res) {
+        botonModal1.onclick = function () {
+            if (botonModal1.innerText == res) {
                 texto.innerHTML = "¡CORRECTO!";
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
-                pulsar.style.display = ""; pulsar.innerText = "SIGUIENTE";
-                pulsar.onclick = function() {
+                pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
+
+                if (sessionStorage.getItem("aciertosResta")==null)
+                    sessionStorage.setItem("aciertosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("aciertosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("aciertosResta", oks);
+                }
+
+                if (sessionStorage.getItem("intentosResta")==null)
+                    sessionStorage.setItem("intentosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("intentosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("intentosResta", oks);
+                }
+
+                pulsar.onclick = function () {
                     location.reload();
                 }
-            } else
+            } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+
+                if (sessionStorage.getItem("fallosResta")==null)
+                    sessionStorage.setItem("fallosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("fallosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("fallosResta", oks);
+                }
+
+                if (sessionStorage.getItem("intentosResta")==null)
+                    sessionStorage.setItem("intentosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("intentosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("intentosResta", oks);
+                }
+            }
         }
 
-        botonModal2.onclick = function() {
-            if (botonModal2.innerText==res) {
+        botonModal2.onclick = function () {
+            if (botonModal2.innerText == res) {
                 texto.innerHTML = "¡CORRECTO!";
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
-                pulsar.style.display = ""; pulsar.innerText = "SIGUIENTE";
-                pulsar.onclick = function() {
+                pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
+
+                if (sessionStorage.getItem("aciertosResta")==null)
+                    sessionStorage.setItem("aciertosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("aciertosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("aciertosResta", oks);
+                }
+
+                if (sessionStorage.getItem("intentosResta")==null)
+                    sessionStorage.setItem("intentosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("intentosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("intentosResta", oks);
+                }
+
+                pulsar.onclick = function () {
                     location.reload();
                 }
-            } else
+            } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+
+                if (sessionStorage.getItem("fallosResta")==null)
+                    sessionStorage.setItem("fallosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("fallosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("fallosResta", oks);
+                }
+
+                if (sessionStorage.getItem("intentosResta")==null)
+                    sessionStorage.setItem("intentosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("intentosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("intentosResta", oks);
+                }
+            }
         }
 
-        botonModal3.onclick = function() {
-            if (botonModal3.innerText==res) {
+        botonModal3.onclick = function () {
+            if (botonModal3.innerText == res) {
                 texto.innerHTML = "¡CORRECTO!";
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
-                pulsar.style.display = ""; pulsar.innerText = "SIGUIENTE";
-                pulsar.onclick = function() {
+                pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
+
+                if (sessionStorage.getItem("aciertosResta")==null)
+                    sessionStorage.setItem("aciertosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("aciertosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("aciertosResta", oks);
+                }
+
+                if (sessionStorage.getItem("intentosResta")==null)
+                    sessionStorage.setItem("intentosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("intentosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("intentosResta", oks);
+                }
+
+                pulsar.onclick = function () {
                     location.reload();
                 }
-            } else
+            } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+
+                if (sessionStorage.getItem("fallosResta")==null)
+                    sessionStorage.setItem("fallosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("fallosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("fallosResta", oks);
+                }
+
+                if (sessionStorage.getItem("intentosResta")==null)
+                    sessionStorage.setItem("intentosResta", "1");
+                else {
+                    let oks = parseInt(sessionStorage.getItem("intentosResta"), 10);
+                    oks++;
+                    sessionStorage.setItem("intentosResta", oks);
+                }
+            }
         }
     }
 }
