@@ -49,21 +49,24 @@ $(document).ready(function() {
 });
 
     function comprobarResta() {
-        let num1 = document.getElementById("imagenes1").getElementsByTagName("img").length;
-        let num2 = document.getElementById("imagenes2").getElementsByTagName("img").length;
 
-        if (num1<=num2) {
-        	let cont = num2-num1,
-        	output = "<img src='assets/apple.png' class='imagen'>";
+        if (document.getElementsByClassName("signo")[0].innerText=="-") {
+            let num1 = document.getElementById("imagenes1").getElementsByTagName("img").length;
+            let num2 = document.getElementById("imagenes2").getElementsByTagName("img").length;
 
-        	if (cont==0)
-        		document.getElementById("imagenes1").getElementsByTagName("figure")[0].innerHTML += output;
-        	else {
-        		for (let i=0;i<cont;i++)
-        			output += "<img src='assets/apple.png' class='imagen'>";
+            if (num1<=num2) {
+            	let cont = num2-num1,
+            	output = "<img src='assets/apple.png' class='imagen'>";
 
-        		document.getElementById("imagenes1").getElementsByTagName("figure")[0].innerHTML += output;
-        	}
+            	if (cont==0)
+            		document.getElementById("imagenes1").getElementsByTagName("figure")[0].innerHTML += output;
+            	else {
+            		for (let i=0;i<cont;i++)
+            			output += "<img src='assets/apple.png' class='imagen'>";
+
+            		document.getElementById("imagenes1").getElementsByTagName("figure")[0].innerHTML += output;
+            	}
+            }
         }
     }
 
@@ -91,7 +94,7 @@ $(document).ready(function() {
         document.getElementById("imagenes1").innerHTML = output1;
         document.getElementById("imagenes2").innerHTML = output2;
 
-        return false;
+        comprobarResta();
     }
 
 function cargarVideo() {
@@ -210,6 +213,7 @@ function mostrarVentana(texto_mostrar, emisor) {
         botonModal1.onclick = function() {
             if (botonModal1.innerText==res) {
                 texto.innerHTML = "¡CORRECTO!";
+                var audio = new Audio('assets/Audios/Correcto.wav'); audio.play();
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
                 pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
@@ -235,6 +239,7 @@ function mostrarVentana(texto_mostrar, emisor) {
                 }
             } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+                var audio = new Audio('assets/Audios/Vuelve-int.wav'); audio.play();
 
                 if (sessionStorage.getItem("fallosSuma")==null)
                     sessionStorage.setItem("fallosSuma", 1);
@@ -257,6 +262,7 @@ function mostrarVentana(texto_mostrar, emisor) {
         botonModal2.onclick = function() {
             if (botonModal2.innerText==res) {
                 texto.innerHTML = "¡CORRECTO!";
+                var audio = new Audio('assets/Audios/Correcto.wav'); audio.play();
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
                 pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
@@ -282,6 +288,7 @@ function mostrarVentana(texto_mostrar, emisor) {
                 }
             } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+                var audio = new Audio('assets/Audios/Vuelve-int.wav'); audio.play();
 
                 if (sessionStorage.getItem("fallosSuma")==null)
                     sessionStorage.setItem("fallosSuma", 1);
@@ -304,6 +311,7 @@ function mostrarVentana(texto_mostrar, emisor) {
         botonModal3.onclick = function() {
             if (botonModal3.innerText==res) {
                 texto.innerHTML = "¡CORRECTO!";
+                var audio = new Audio('assets/Audios/Correcto.wav'); audio.play();
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
                 pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
@@ -329,6 +337,7 @@ function mostrarVentana(texto_mostrar, emisor) {
                 }
             } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+                var audio = new Audio('assets/Audios/Vuelve-int.wav'); audio.play();
 
                 if (sessionStorage.getItem("fallosSuma")==null)
                     sessionStorage.setItem("fallosSuma", 1);
@@ -405,6 +414,7 @@ function mostrarVentana(texto_mostrar, emisor) {
         botonModal1.onclick = function () {
             if (botonModal1.innerText == res) {
                 texto.innerHTML = "¡CORRECTO!";
+                var audio = new Audio('assets/Audios/Correcto.wav'); audio.play();
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
                 pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
@@ -430,6 +440,7 @@ function mostrarVentana(texto_mostrar, emisor) {
                 }
             } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+                var audio = new Audio('assets/Audios/Vuelve-int.wav'); audio.play();
 
                 if (sessionStorage.getItem("fallosResta")==null)
                     sessionStorage.setItem("fallosResta", "1");
@@ -452,6 +463,7 @@ function mostrarVentana(texto_mostrar, emisor) {
         botonModal2.onclick = function () {
             if (botonModal2.innerText == res) {
                 texto.innerHTML = "¡CORRECTO!";
+                var audio = new Audio('assets/Audios/Correcto.wav'); audio.play();
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
                 pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
@@ -477,6 +489,7 @@ function mostrarVentana(texto_mostrar, emisor) {
                 }
             } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+                var audio = new Audio('assets/Audios/Vuelve-int.wav'); audio.play();
 
                 if (sessionStorage.getItem("fallosResta")==null)
                     sessionStorage.setItem("fallosResta", "1");
@@ -499,6 +512,7 @@ function mostrarVentana(texto_mostrar, emisor) {
         botonModal3.onclick = function () {
             if (botonModal3.innerText == res) {
                 texto.innerHTML = "¡CORRECTO!";
+                var audio = new Audio('assets/Audios/Correcto.wav'); audio.play();
                 document.getElementById("botones").style.display = "none";
                 let pulsar = document.getElementById("pulsar");
                 pulsar.style.display = "block"; pulsar.innerText = "SIGUIENTE";
@@ -524,6 +538,7 @@ function mostrarVentana(texto_mostrar, emisor) {
                 }
             } else {
                 texto.innerHTML = "VUELVE A INTENTARLO";
+                var audio = new Audio('assets/Audios/Vuelve-int.wav'); audio.play();
 
                 if (sessionStorage.getItem("fallosResta")==null)
                     sessionStorage.setItem("fallosResta", "1");
@@ -547,5 +562,34 @@ function mostrarVentana(texto_mostrar, emisor) {
 
 function cerrarModal() {
     sessionStorage.setItem("flagVideo","no");
-    document.getElementById("myModal").style.display = "none"; 
+    document.getElementById("myModal").style.display = "none";
+}
+
+function instruccionesSumaResta() {
+
+    if (sessionStorage.getItem("flagVideo")=="no") {
+        let cont1 = document.getElementById("imop1"), cont2 = document.getElementById("imop2");
+        let numero1 = cont1.getElementsByTagName("img").length, numero2 = cont2.getElementsByTagName("img").length;
+        if (document.getElementsByClassName("signo")[0].innerText=="+") {
+            var audio = new Audio('assets/Audios/Suma.wav');
+            let n1 = numero1.toString(); let n2 = numero2.toString();
+            var audio2 = new Audio('assets/Audios/'+n1+'.wav'); audio2.autoplay = false;
+            var audio3 = new Audio('assets/Audios/Mas.wav'); audio3.autoplay = false;
+            var audio4 = new Audio('assets/Audios/'+n2+'.wav'); audio4.autoplay = false;
+            audio.onended = function(){audio2.play();};
+            audio2.onended = function(){audio3.play();};
+            audio3.onended = function(){audio4.play();};
+            audio.play();
+        } else {
+            var audio = new Audio('assets/Audios/Suma.wav');
+            let n1 = numero1.toString(); let n2 = numero2.toString();
+            var audio2 = new Audio('assets/Audios/'+n1+'.wav'); audio2.autoplay = false;
+            var audio3 = new Audio('assets/Audios/Mas.wav'); audio3.autoplay = false;
+            var audio4 = new Audio('assets/Audios/'+n2+'.wav'); audio4.autoplay = false;
+            audio.onended = function(){audio2.play();};
+            audio2.onended = function(){audio3.play();};
+            audio3.onended = function(){audio4.play();};
+            audio.play();
+        }
+    }
 }

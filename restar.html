@@ -12,15 +12,16 @@
       src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
       integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
       crossorigin="anonymous"></script>
+      <script src="jquery.ui.touch-punch.min.js"></script>
       <script type="text/javascript" src="archivo.js"></script>
     </head>
 
-    <body onload="colocarNumeros();activarVideo();comprobarResta();">
+    <body onload="colocarNumeros();activarVideo();">
         <header>
             <h1>¡APRENDE MATEMÁTICAS!</h1>
         </header>
         <section>
-            <h2 id="operacion">¡RESTA!</h2>
+            <h2 id="operacion">¡RESTA! <button name="tutorial" class="myButton" onclick="instruccionesSumaResta();">COMO JUGAR</button></h2>
             <div id="cont_suma" class="operacion">
                 <div id="imagenes1" class="imagenes"></div>
                 <h2 class="signo">-</h2>
@@ -33,7 +34,7 @@
             <div data-pagina="fondo" id="myModal">
                 <div data-pagina="modal" id="miVentana">
                     <p id="textoModal"></p>
-                    <video controls autoplay><source src="assets/sumar.mp4" type="video/mp4"></video>
+                    <video controls autoplay><source src="assets/Resta.mp4" type="video/mp4"></video>
                     <footer>
                         <div id="botones">
                             <button id="botonModal1"></button>
