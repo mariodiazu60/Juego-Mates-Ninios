@@ -1,9 +1,9 @@
 
 $(document).ready(function() {
 
+    //JS DEL JUEGO DE CONTAR
     $("#zona_dibujo").ready(function()
     {
-         
         //Variables para el juego
         var count = 0;                                                                              //contadoor de clicks totales sobre el canvas
         var indiceImagen = 1;                                                                       //Contador para saber en que nivel del juego estamos
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
         $("#zona_dibujo").mouseup(function(e)
         {
-            //CAPTURAMOS LOS CLICKS SOBRE EL CANVAS
+            //CAPTURAMOS LOS CLICKS SOBRE EL CANVAS con un contador
             //Al primer click nos guardamos la coord inicial de la recta.
             count ++;
             if(count%2 != 0)
@@ -54,7 +54,7 @@ $(document).ready(function() {
                 drawCircles("#e830d8", 4, firstClick);
                 coordYClicks[count] = firstClick[1];
             }
-                //Al segundo click nos guardamos la segunda coord
+                //Al segundo click nos guardamos la segunda coordenada
                 else
                 {
                     secondClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];  
@@ -65,6 +65,7 @@ $(document).ready(function() {
                 drawLines(4, "green");
         })
 
+        //Comprobamos que los clicks que tenemos en el array están en las coordenadas correctas
         $("#comprobar").click(function()
         {
             intentosContar++;
@@ -237,9 +238,10 @@ $(document).ready(function() {
             }
         })
 
+        //Cuando le damos a anterior o siguiente actualizamos el indice de la pagina donde nos encontramos
+        //limpiamos el canvas y cargamos la imagen que corresponde a cada pagina
         $("#anterior").click(function()
-        {
-            
+        {   
             if(indiceImagen == 2)
             {   
                 ctx_zona_dibujo.clearRect(0, 0, $("#zona_dibujo").outerWidth(), $("#zona_dibujo").outerHeight());
@@ -269,6 +271,7 @@ $(document).ready(function() {
             }
         })
 
+        //Segun el indice cargaremos la img 1.jpg/2.jpg etc
         function cargarImagen(indiceImagen)
         {
             img.src = "assets/" + indiceImagen + ".jpg";
@@ -305,7 +308,34 @@ $(document).ready(function() {
         }
 
     })
-   
+
+
+    //JS DEL INFORME
+    $("#tarjeteroInforme").ready(function()
+    {   
+        //si existen intentos y aciertos como storage, significa que se ha jugado y sacamos sus valores.
+        //En caso de que no existan como storage, significa que no se ha jugado al juego aún. por tanto mostramos 0.
+        if(sessionStorage.getItem("intentosContar")!=null){
+            $("#intentosCuenta").html("Intentos: " + sessionStorage.getItem("intentosContar"));
+        } else{
+                $("#intentosCuenta").html("Intentos: " + 0);
+        }
+
+        if(sessionStorage.getItem("aciertosContar")!=null){
+            $("#aciertosCuenta").html("Aciertos: " + sessionStorage.getItem("aciertosContar"));
+        } else{
+                $("#aciertosCuenta").html("Aciertos: " + 0);
+        }
+        
+        //Para los fallos, comprobamos que intentos o aciertos existen como storage, y si existen hacemos la resta de intentos-aciertos para sacar los fallos
+        //En caso de que no existan como storage, significa que no se ha jugado al juego aún. por tanto mostramos 0.
+        if(sessionStorage.getItem("intentosContar")!=null){
+            $("#fallosCuenta").html("Fallos: " + (sessionStorage.getItem("intentosContar") - sessionStorage.getItem("aciertosContar")));
+        } else{
+                $("#fallosCuenta").html("Fallos: " + 0);
+        }
+    })
+      
 });
 
 

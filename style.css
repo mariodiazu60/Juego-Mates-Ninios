@@ -81,6 +81,26 @@ header > h1
    
     }
 
+#tarjeteroInforme
+{
+  display: flex;  /* Hace el contenido de esta caja Flexible */
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  padding: 1em;
+}
+.tarjetaInforme 
+{                                              
+  margin: 1em;  
+  padding: 1.2em;
+  border-radius: 100px;
+  width: 28%; 
+  height: 9em;                                               
+  background-color: #69b210ef;                                  
+  box-shadow: 5px 8px 47px 3px rgba(0,0,0,.50);                
+  text-align: center;                                                                                     
+}
     
 .botonera
 {/* Texto informativo del juego */
@@ -94,11 +114,21 @@ header > h1
     padding: 1em 0 0 0; 
 } 
 .botonera>button
-{/* Texto informativo del juego */
+{
     margin: 0 auto;
     width: 20%;
     height: 2em;
     border-radius: 20px;
+    background-color: #69b210ef; 
+    color: black;
+    font-weight: bold;
+    font-size: 1.3em;
+    transition: .6s;
+}
+.botonera>button:hover
+{
+    width: 25%;
+    border-radius: 10px;
 }
 #imagen {
       margin: 5em;
@@ -125,7 +155,7 @@ footer
   border-radius: 70px 70px 0 0;
   box-shadow:5px 8px 47px 3px rgba(0,0,0,.50);
   position: fixed;
-  height: 10%;
+  height: 7%;
   bottom: 0;
   left: 0;
   right: 0;
