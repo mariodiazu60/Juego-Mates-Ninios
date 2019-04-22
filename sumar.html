@@ -5,29 +5,48 @@
       <link type="text/css" rel="stylesheet" href="style.css">
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <script
-      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-      crossorigin="anonymous"></script>
-      <script
       src="http://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
+      <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"></script>
+      <script src="jquery.ui.touch-punch.min.js"></script>
       <script type="text/javascript" src="archivo.js"></script>
     </head>
 
-    <body>
+    <body onload="colocarNumeros();activarVideo();">
       <header>
         <h1>¡APRENDE MATEMÁTICAS!</h1>
       </header>
-      <div id="tarjetero">
-        <section class="tarjeta">
-          <img src="assets/suma.png" alt="Imagen signo suma">
-          <div>         
-            <h2>¡SUMA!</h2>
-          </div>
+        <section>
+        	<h2 id="operacion">¡SUMA! <button name="tutorial" class="myButton" onclick="instruccionesSumaResta();">COMO JUGAR</button></h2>
+	          	<div id="cont_suma" class="operacion">
+  		        	<div id="imagenes1" class="imagenes"></div>
+                <h2 class="signo">+</h2>
+  		        	<div id="imagenes2" class="imagenes"></div>
+              </div>
+              <div class="resultado">
+  		        	<figure id="draggable"><img src="assets/apple.png" class="imagen"></figure>
+  		        	<div id="droppable"></div>
+              </div>
+              <div data-pagina="fondo" id="myModal">
+                <div data-pagina="modal" id="miVentana">
+                  <p id="textoModal"></p>
+                  <video controls autoplay><source src="assets/Suma.mp4" type="video/mp4"></video>
+                  <footer>
+                    <div id="botones">
+                      <button id="botonModal1"></button>
+                      <button id="botonModal2"></button>
+                      <button id="botonModal3"></button>
+                    </div>
+                    <button id="pulsar"></button>
+                    <button id="aprender" onclick="cerrarModal();">¡APRENDER!</button>
+                  </footer>
+                </div>
+              </div>
         </section>
-      </div>
-
       <footer>
         <p>
           Creado por Mario Díaz-Ufano Nuevo y Antonio Hernández Velasco

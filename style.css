@@ -28,6 +28,163 @@ header > h1
 /* FIN CSS HEADER */
 
 /* INICIO CSS CUERPO */
+.myButton {
+  -moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+  box-shadow:inset 0px 1px 0px 0px #97c4fe;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0));
+  background:-moz-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+  background:-webkit-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+  background:-o-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+  background:-ms-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
+  background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0',GradientType=0);
+  background-color:#3d94f6;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #337fed;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #1570cd;
+}
+.myButton:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6));
+  background:-moz-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+  background:-webkit-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+  background:-o-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+  background:-ms-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
+  background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6',GradientType=0);
+  background-color:#1e62d0;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+section>h2{
+  text-align: center;
+  font-size: 1.5em;
+  color: white;
+  padding: .2em 0;
+}
+button{
+  cursor: pointer;
+}
+button:hover{
+  cursor: pointer;
+}
+#pulsar{
+  display: none;
+  margin: 0 auto;
+}
+#botones{
+  display: none;
+}
+video{
+  width: 20em;
+  height: 15em;
+}
+/*EL CSS BUENO PARA LOS MENSAJES MODALES O EMERGENTES*/
+section>div[data-pagina="fondo"]{
+  display: none; /* Hidden by default */
+  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+}
+section>div[data-pagina="fondo"]>div[data-pagina="modal"]{
+  text-align: center;
+  background-color: #fff;
+  margin: .6em;
+}
+section>div[data-pagina="fondo"]>div[data-pagina="modal"]>p{
+  background-color: #fff;
+  display: none;
+  padding: .6em;    
+}
+section>div[data-pagina="fondo"]>div[data-pagina="modal"]>footer{
+  text-align: center;
+  background-color: #0da39be8;
+}
+/*FIN DEL CODIGO BUENO*/
+.operacion{
+  border-radius: 50px;
+  background-color: white;
+  margin: 0 2em 0 2em;
+}
+.imagenes{
+  text-align: center;
+}
+#imagenes1{
+  padding-top: 1em;
+}
+#imagenes2{
+  padding-bottom: 1em;
+}
+.resultado{
+  border-radius: 50px;
+  background-color: #4082ed;
+  margin: 3em 2em 0 2em;
+}
+.signo{
+  margin: 0;
+  text-align: center;
+  font-size: 3em;
+  color: black;
+}
+.imagen{
+  height: 5.65em;
+  width: 5.65em;
+}
+.outerwrapper {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+.drag-helper {
+  width: 5.7em;
+  height: 5.7em;
+  padding: 0.5em;
+  border : 0.25em solid gray;
+  background-color: red;
+  display: inline-block;
+  margin-right: 50px;
+  vertical-align:middle;
+  opacity: 0.75;
+  cursor: pointer;
+}
+#draggable{
+  width: 5.7em;
+  height: 5.7em;
+  padding: 0.5em;
+  border : 0.25em solid black;
+  background-color: red;
+  display: inline-block;
+  margin-right: .5em;
+  margin-left: 1.5em;
+  vertical-align:middle;
+  cursor: pointer;
+}
+#droppable{
+  width: 20em;
+  height: 7.2em;
+  padding: 0.5em;
+  border : 0.3em solid black;
+  background-color: #777;
+  display: inline-block;
+  vertical-align:middle;
+  margin: 1em 0 1em 1em;
+}
+
 #tarjetero
 {
   display: flex;  /* Hace el contenido de esta caja Flexible */
@@ -147,7 +304,7 @@ header > h1
 /* FIN CSS CUERPO  */
 
 /* INICIO CSS FOOTER*/
-footer 
+body>footer 
 {
   align-self: center;
   background-color: #0da39be8;
@@ -160,7 +317,7 @@ footer
   left: 0;
   right: 0;
 }
-  footer > p 
+  body>footer>p 
   {
     color: white;
     font-size: 1.5em;
