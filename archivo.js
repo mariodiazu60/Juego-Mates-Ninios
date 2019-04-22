@@ -25,7 +25,7 @@ $(document).ready(function() {
             $(this).css("width", "85%");
             $(this).css("height", "100%");
 
-            if (document.getElementById("operacion").innerText=="¡SUMA!") {
+            if (document.getElementsByClassName("signo")[0].innerText=="+") {
                 let cont1 = document.getElementById("imop1"), cont2 = document.getElementById("imop2");
                 res = cont1.getElementsByTagName("img").length + cont2.getElementsByTagName("img").length;
                 let cont_res = document.getElementById("outerwrapper");
@@ -382,7 +382,12 @@ function mostrarVentana(texto_mostrar, emisor) {
             switch (i) {
                 case 0:
                     if (botonModal1.innerText=="") {
-                        let aleatorio = Math.floor((Math.random()*(res-1))+1);
+                        let aleatorio = 0;
+
+                        if (res!=1)
+                            aleatorio = Math.floor((Math.random()*(res-1))+1);
+                        else
+                            aleatorio = Math.floor((Math.random()*10)+(res+1));
 
                         botonModal1.innerText = aleatorio;
                     }
@@ -395,13 +400,16 @@ function mostrarVentana(texto_mostrar, emisor) {
                     }
                     break;
                 case 2:
-                    if (botonModal3.innerText == "") {
+                    if (botonModal3.innerText=="") {
                         let aleatorio = 0;
                         let bt1 = parseInt(botonModal1.innerText, 10);
 
-                        if (bt1==res)
-                            aleatorio = Math.floor((Math.random()*(res-1))+1);                           
-                        else
+                        if (bt1==res) {
+                            if (res!=1)
+                                aleatorio = Math.floor((Math.random()*(res-1))+1);
+                            else
+                                aleatorio = Math.floor((Math.random()*10)+(res+1));
+                        } else
                             aleatorio = Math.floor((Math.random()*10)+(res+1));
 
                         botonModal3.innerText = aleatorio;
@@ -566,30 +574,28 @@ function cerrarModal() {
 }
 
 function instruccionesSumaResta() {
-
-    if (sessionStorage.getItem("flagVideo")=="no") {
-        let cont1 = document.getElementById("imop1"), cont2 = document.getElementById("imop2");
-        let numero1 = cont1.getElementsByTagName("img").length, numero2 = cont2.getElementsByTagName("img").length;
-        if (document.getElementsByClassName("signo")[0].innerText=="+") {
-            var audio = new Audio('assets/Audios/Suma.wav');
-            let n1 = numero1.toString(); let n2 = numero2.toString();
-            var audio2 = new Audio('assets/Audios/'+n1+'.wav'); audio2.autoplay = false;
-            var audio3 = new Audio('assets/Audios/Mas.wav'); audio3.autoplay = false;
-            var audio4 = new Audio('assets/Audios/'+n2+'.wav'); audio4.autoplay = false;
-            audio.onended = function(){audio2.play();};
-            audio2.onended = function(){audio3.play();};
-            audio3.onended = function(){audio4.play();};
-            audio.play();
-        } else {
-            var audio = new Audio('assets/Audios/Suma.wav');
-            let n1 = numero1.toString(); let n2 = numero2.toString();
-            var audio2 = new Audio('assets/Audios/'+n1+'.wav'); audio2.autoplay = false;
-            var audio3 = new Audio('assets/Audios/Mas.wav'); audio3.autoplay = false;
-            var audio4 = new Audio('assets/Audios/'+n2+'.wav'); audio4.autoplay = false;
-            audio.onended = function(){audio2.play();};
-            audio2.onended = function(){audio3.play();};
-            audio3.onended = function(){audio4.play();};
-            audio.play();
-        }
+    let cont1 = document.getElementById("imop1"), cont2 = document.getElementById("imop2");
+    let numero1 = cont1.getElementsByTagName("img").length, numero2 = cont2.getElementsByTagName("img").length;
+        
+    if (document.getElementsByClassName("signo")[0].innerText=="+") {
+        var audio = new Audio('assets/Audios/Suma.wav');
+        let n1 = numero1.toString(); let n2 = numero2.toString();
+        var audio2 = new Audio('assets/Audios/'+n1+'.wav'); audio2.autoplay = false;
+        var audio3 = new Audio('assets/Audios/Mas.wav'); audio3.autoplay = false;
+        var audio4 = new Audio('assets/Audios/'+n2+'.wav'); audio4.autoplay = false;
+        audio.onended = function(){audio2.play();};
+        audio2.onended = function(){audio3.play();};
+        audio3.onended = function(){audio4.play();};
+        audio.play();
+    } else {
+        var audio = new Audio('assets/Audios/Resta.wav');
+        let n1 = numero1.toString(); let n2 = numero2.toString();
+        var audio2 = new Audio('assets/Audios/'+n1+'.wav'); audio2.autoplay = false;
+        var audio3 = new Audio('assets/Audios/Menos.wav'); audio3.autoplay = false;
+        var audio4 = new Audio('assets/Audios/'+n2+'.wav'); audio4.autoplay = false;
+        audio.onended = function(){audio2.play();};
+        audio2.onended = function(){audio3.play();};
+        audio3.onended = function(){audio4.play();};
+        audio.play();
     }
 }
