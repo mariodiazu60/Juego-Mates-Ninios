@@ -223,7 +223,7 @@ $(document).ready(function() {
             {
                 aciertosContar++;
                 sessionStorage.setItem("aciertosContar",aciertosContar);
-                window.alert("SOLUCIONADO");
+                mostrarVentana("¡CORRECTO!","cuenta");
             }   
             else
             {
@@ -233,7 +233,7 @@ $(document).ready(function() {
                 firstClick = []
                 secondClick = [];
                 count = 0;
-                window.alert("NO SOLUCIONADO");
+                mostrarVentana("VUELVE A INTENTARLO","cuenta");
             }
         })
 
@@ -312,8 +312,48 @@ $(document).ready(function() {
     //JS DEL INFORME
     $("#tarjeteroInforme").ready(function()
     {   
-        //si existen intentos y aciertos como storage, significa que se ha jugado y sacamos sus valores.
+
+    	//INFORME SOBRE LA SUMA
+    	//si existen intentos y aciertos como storage, significa que se ha jugado y sacamos sus valores.
         //En caso de que no existan como storage, significa que no se ha jugado al juego aún. por tanto mostramos 0.
+        if(sessionStorage.getItem("intentosSuma")!=null){
+            $("#intentosSuma").html("Intentos: " + sessionStorage.getItem("intentosSuma"));
+        } else{
+                $("#intentosSuma").html("Intentos: " + 0);
+        }
+
+        if(sessionStorage.getItem("aciertosSuma")!=null){
+            $("#aciertosSuma").html("Aciertos: " + sessionStorage.getItem("aciertosSuma"));
+        } else{
+                $("#aciertosSuma").html("Aciertos: " + 0);
+        }
+        
+        if(sessionStorage.getItem("fallosSuma")!=null){
+            $("#fallosSuma").html("Fallos: " + (sessionStorage.getItem("fallosSuma")));
+        } else{
+                $("#fallosSuma").html("Fallos: " + 0);
+        }
+
+        //INFORME SOBRE LA SUMA
+        if(sessionStorage.getItem("intentosResta")!=null){
+            $("#intentosResta").html("Intentos: " + sessionStorage.getItem("intentosResta"));
+        } else{
+                $("#intentosResta").html("Intentos: " + 0);
+        }
+
+        if(sessionStorage.getItem("aciertosResta")!=null){
+            $("#aciertosResta").html("Aciertos: " + sessionStorage.getItem("aciertosResta"));
+        } else{
+                $("#aciertosResta").html("Aciertos: " + 0);
+        }
+        
+        if(sessionStorage.getItem("fallosResta")!=null){
+            $("#fallosResta").html("Fallos: " + (sessionStorage.getItem("fallosResta")));
+        } else{
+                $("#fallosResta").html("Fallos: " + 0);
+        }
+
+    	//INFORME SOBRE LA RESTA
         if(sessionStorage.getItem("intentosContar")!=null){
             $("#intentosCuenta").html("Intentos: " + sessionStorage.getItem("intentosContar"));
         } else{
@@ -480,21 +520,38 @@ function activarVideo() {
 
 //MENSAJES MODALES
 function mostrarVentana(texto_mostrar, emisor) {
-        document.getElementsByTagName("video")[0].style.display = "none";
-        document.getElementById("aprender").style.display = "none";
-        var cuerpo = document.getElementsByTagName("BODY")[0];
-        var ventana = document.getElementById('myModal');
-        var ventana1 = document.getElementById('miVentana');
-        var texto = document.getElementById('textoModal');
-        var botones = document.getElementById("botones");
-        botones.style.display = "block";
-        cuerpo.style.overflow = 'hidden';
-        texto.innerHTML = texto_mostrar;
-        texto.style.display = "block";
-        ventana1.style.left = ((document.body.clientWidth-350) / 2) +  'em';
-        ventana.style.display = 'block';
+    document.getElementsByTagName("video")[0].style.display = "none";
+    document.getElementById("aprender").style.display = "none";
+    var cuerpo = document.getElementsByTagName("BODY")[0];
+    var ventana = document.getElementById('myModal');
+    var ventana1 = document.getElementById('miVentana');
+    var texto = document.getElementById('textoModal');
+    var botones = document.getElementById("botones");
+    botones.style.display = "block";
+    cuerpo.style.overflow = 'hidden';
+    texto.innerHTML = texto_mostrar;
+    texto.style.display = "block";
+    ventana1.style.left = ((document.body.clientWidth-350) / 2) +  'em';
+    ventana.style.display = 'block';
 
-    if(emisor == 'suma') {              
+    if(emisor == 'cuenta') {
+    	var botonModal1 = document.getElementById('botonModal1');
+    	botonModal1.style.display = "";
+    	botonModal1.innerHTML = "ACEPTAR";
+    	document.getElementById("miVentana").focus();
+
+    	if (texto_mostrar == "¡CORRECTO!") {
+    		var audio = new Audio('assets/Audios/Correcto.wav'); audio.play();
+    	} else{
+    		var audio = new Audio('assets/Audios/Vuelve-int.wav'); audio.play();
+    	}
+
+    	botonModal1.onclick = function() {
+    		ventana.style.display = "none";
+    	}
+    }
+
+    if(emisor == 'suma') {            
         var botonModal1 = document.getElementById('botonModal1');
         var botonModal2 = document.getElementById('botonModal2');
         var botonModal3 = document.getElementById('botonModal3');

@@ -16,7 +16,7 @@
       <script type="text/javascript" src="archivo.js"></script>
     </head>
 
-    <body>
+    <body onload="activarVideo();">
       <header>
         <h1>¡UNE LOS PUNTOS!</h1>
       </header>
@@ -30,7 +30,19 @@
         <canvas id="imagen"> </canvas>
         <canvas id="zona_dibujo"> </canvas>
       </div>
-      
+      <div data-pagina="fondo" id="myModal">
+                <div data-pagina="modal" id="miVentana">
+                  <p id="textoModal"></p>
+                  <video controls autoplay><source src="assets/Cuenta.mp4" type="video/mp4"></video>
+                  <footer>
+                    <div id="botones">
+                      <button id="botonModal1"></button>
+                    </div>
+                    <button id="pulsar"></button>
+                    <button id="aprender" onclick="cerrarModal();">¡APRENDER!</button>
+                  </footer>
+                </div>
+              </div>
       <footer>
         <p>
           Creado por Mario Díaz-Ufano Nuevo y Antonio Hernández Velasco.
