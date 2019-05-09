@@ -37,6 +37,9 @@ section>h2{
 button{
   cursor: pointer;
 }
+button>img{
+  
+}
 button:hover{
   cursor: pointer;
 }
