@@ -435,7 +435,7 @@ $(document).ready(function() {
 
             if (num1<=num2) {
             	let cont = num2-num1,
-            	output = "<img src='assets/apple.png' class='imagen'>";
+            	output = "<img src='assets/apple.png' class='imagen' alt='Imagen de la manzana para realizar el ejercicio'>";
 
             	if (cont==0)
             		document.getElementById("imagenes1").getElementsByTagName("figure")[0].innerHTML += output;
@@ -461,11 +461,11 @@ $(document).ready(function() {
         output1 = "<figure id='imop1'>", output2 = "<figure id='imop2'>"; 
 
         for(let i=0;i<numeros[0];i++) {
-            output1 += "<img src='assets/apple.png' class='imagen'>";
+            output1 += "<img src='assets/apple.png' class='imagen' alt='Imagen de la manzana para realizar el ejercicio'>";
         }
 
         for(let i=0;i<numeros[1];i++) {
-            output2 += "<img src='assets/apple.png' class='imagen'>";
+            output2 += "<img src='assets/apple.png' class='imagen' alt='Imagen de la manzana para realizar el ejercicio'>";
         }
         
         output1 += "</figure>";
