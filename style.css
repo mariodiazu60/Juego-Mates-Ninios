@@ -182,7 +182,7 @@ div[data-pagina="fondo"]>div[data-pagina="modal"]>footer{
   height: 5.7em;
   padding: 0.5em;
   border : 0.25em solid black;
-  background-color: red;
+  background-color: white;
   display: inline-block;
   margin-right: .5em;
   margin-left: 1.5em;
@@ -194,7 +194,7 @@ div[data-pagina="fondo"]>div[data-pagina="modal"]>footer{
   height: 7.2em;
   padding: 0.5em;
   border : 0.3em solid black;
-  background-color: #777;
+  background-color: white;
   display: inline-block;
   vertical-align:middle;
   margin: 1em 0 1em 1em;
@@ -207,7 +207,6 @@ div[data-pagina="fondo"]>div[data-pagina="modal"]>footer{
   flex-direction: row;
   justify-content: space-around;
 }
-
 
 .tarjeta 
 {                                              

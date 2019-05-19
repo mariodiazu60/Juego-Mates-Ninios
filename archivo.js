@@ -391,18 +391,18 @@ $(document).ready(function() {
         }
     })*/
     
-    $("#droppable").click(
+    $("#draggable").click(
         function () {
             var cloned = $("#draggable").clone().css({
                 "margin": "0 .5em 0 0"
             })
-            $(this).css("background-color", "green");
+            $("#droppable").css("background-color", "white");
             if ($(".outerwrapper").length == 0) {
-                $(this).wrapInner("<div id='outerwrapper' class = 'outerwrapper'></div>");
+                $("#droppable").wrapInner("<div id='outerwrapper' class = 'outerwrapper'></div>");
             }
             $(".outerwrapper").append(cloned)
-            $(this).css("width", "85%");
-            $(this).css("height", "100%");
+            $("#droppable").css("width", "85%");
+            $("#droppable").css("height", "100%");
 
             if (document.getElementsByClassName("signo")[0].innerText=="+") {
                 let cont1 = document.getElementById("imop1"), cont2 = document.getElementById("imop2");
