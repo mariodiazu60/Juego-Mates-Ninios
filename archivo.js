@@ -382,17 +382,17 @@ var res = 0;
 $(document).ready(function() {
     console.log("Documento listo");
 
-    $("#draggable").draggable({
+    /*$("#draggable").draggable({
         // opacity : 0.7, 
         helper: "clone",
         start: function (e, ui) {
             $(ui.helper).addClass("drag-helper");
             console.log(ui);
         }
-    })
+    })*/
     
-    $("#droppable").droppable({
-        drop: function () {
+    $("#droppable").click(
+        function () {
             var cloned = $("#draggable").clone().css({
                 "margin": "0 .5em 0 0"
             })
@@ -424,7 +424,7 @@ $(document).ready(function() {
                 }
             }
         },
-    })
+    )
 });
 
     function comprobarResta() {
