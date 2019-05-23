@@ -228,6 +228,13 @@ div[data-pagina="fondo"]>div[data-pagina="modal"]>footer{
       cursor: pointer;
       background-color: #0da39b;
   }
+  .tarjeta:focus{
+      border-radius: 50px;
+      width: 29%;
+      box-shadow:5px 8px 47px 3px rgba(0,0,0,.85);
+      cursor: pointer;
+      background-color: #0da39b;
+  }
   .tarjeta:active
   {
       background-color: #05423f;
