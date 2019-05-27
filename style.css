@@ -311,6 +311,10 @@ div[data-pagina="fondo"]>div[data-pagina="modal"]>footer{
 {
     border-radius: 5px;
 }
+.botonera>button:focus
+{
+    border-radius: 5px;
+}
 #imagen {
       margin: 5em;
       position:absolute;
