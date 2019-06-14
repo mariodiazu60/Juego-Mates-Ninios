@@ -4,6 +4,8 @@ $(document).ready(function() {
     $("#zona_dibujo").ready(function()
     {
         //Variables para el juego
+        var registroTeclas = 0;                                                                     //Registro con la última tecla pulsada
+        var contadorTeclas = 0;                                                                     //Registro de cuantas teclas de clickan
         var count = 0;                                                                              //contadoor de clicks totales sobre el canvas
         var indiceImagen = 1;                                                                       //Contador para saber en que nivel del juego estamos
         var firstClick = [];                                                                        //Array para obtener el punto inicial de la recta
@@ -52,6 +54,7 @@ $(document).ready(function() {
                 firstClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];
                 drawCircles("#e830d8", 4, firstClick);
                 coordYClicks[count] = firstClick[1];
+                console.log("first-click = " + firstClick);
             }
                 //Al segundo click nos guardamos la segunda coordenada
                 else
@@ -59,17 +62,193 @@ $(document).ready(function() {
                     secondClick = [e.clientX - coordenadas.left - marginX, e.clientY - coordenadas.top - marginY];  
                     drawCircles("#ff7700", 4, secondClick);
                     coordYClicks[count] = secondClick[1];
+                    console.log("second-click = " + secondClick);
                 }
                 //Una vez tenemos los dos pares de coordenadas dibujamos la linea
                 drawLines(4, "green");
         })
+
+        document.addEventListener('keydown', (e) => {
+            if (!e.repeat && (e.key=='0'||e.key=='1'||e.key=='2'||e.key=='3'||e.key=='4'||e.key=='5'||e.key=='6'||e.key=='7'||e.key=='8'||e.key=='9'||e.key=='q'||e.key=='w'||e.key=='e'||e.key=='r')){
+                registroTeclas = e.key;
+                if(indiceImagen == 1)
+                {
+                    contadorTeclas++;
+                    if(registroTeclas == 1){
+                        coordYClicks[contadorTeclas] = 100;
+                        firstClick = [410, 122];
+                        drawCircles("#e830d8", 4, firstClick);
+                        coordYClicks[count] = firstClick[1];
+                    }
+                        else if(registroTeclas == 2){
+                            coordYClicks[contadorTeclas] = 120;
+                            secondClick = [349, 98];
+                            drawCircles("#ff7700", 4, secondClick);
+                            coordYClicks[count] = secondClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 3){
+                            coordYClicks[contadorTeclas] = 120;
+                            firstClick = [305, 142];
+                            drawCircles("#e830d8", 4, firstClick);
+                            coordYClicks[count] = firstClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 4){
+                            coordYClicks[contadorTeclas] = 190;
+                            secondClick = [293, 235];
+                            drawCircles("#ff7700", 4, secondClick);
+                            coordYClicks[count] = secondClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 5){
+                            coordYClicks[contadorTeclas] = 300;
+                            firstClick = [333, 333];
+                            drawCircles("#e830d8", 4, firstClick);
+                            coordYClicks[count] = firstClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 6){
+                            coordYClicks[contadorTeclas] = 320;
+                            secondClick = [393, 409];
+                            drawCircles("#ff7700", 4, secondClick);
+                            coordYClicks[count] = secondClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 7){
+                            coordYClicks[contadorTeclas] = 300;
+                            firstClick = [464, 402];
+                            drawCircles("#e830d8", 4, firstClick);
+                            coordYClicks[count] = firstClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 8){
+                            coordYClicks[contadorTeclas] = 320;
+                            secondClick = [542, 414];
+                            drawCircles("#ff7700", 4, secondClick);
+                            coordYClicks[count] = secondClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 9){
+                            coordYClicks[contadorTeclas] = 320;
+                            firstClick = [600, 370];
+                            drawCircles("#e830d8", 4, firstClick);
+                            coordYClicks[count] = firstClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 'q' /*10*/){
+                            coordYClicks[contadorTeclas] = 250;
+                            secondClick = [621, 294];
+                            drawCircles("#ff7700", 4, secondClick);
+                            coordYClicks[count] = secondClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 'w'/*11*/){
+                            coordYClicks[contadorTeclas] = 170;
+                            firstClick = [600, 200];
+                            drawCircles("#e830d8", 4, firstClick);
+                            coordYClicks[count] = firstClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 'e' /*12*/){
+                            coordYClicks[contadorTeclas] = 100;
+                            secondClick = [547, 77];
+                            drawCircles("#ff7700", 4, secondClick);
+                            coordYClicks[count] = secondClick[1];
+                            drawLines(4, "green");
+                        }
+                        else if(registroTeclas == 'r'/*13*/){
+                            coordYClicks[contadorTeclas] = 100;
+                            firstClick = [474, 74];
+                            drawCircles("#e830d8", 4, firstClick);
+                            coordYClicks[count] = firstClick[1];
+                            drawLines(4, "green");
+                            contadorTeclas = 0;
+                        }
+                        dibujoSolucionado = true;   
+                        
+                }
+                    else{
+                        contadorTeclas++;
+                        if(registroTeclas == 1){
+                            coordYClicks[contadorTeclas] = 400;
+                            firstClick = [756, 442];
+                            drawCircles("#e830d8", 4, firstClick);
+                            coordYClicks[count] = firstClick[1];
+                        }
+                            else if(registroTeclas == 2){
+                                coordYClicks[contadorTeclas] = 200;
+                                secondClick = [874, 237];
+                                drawCircles("#ff7700", 4, secondClick);
+                                coordYClicks[count] = secondClick[1];
+                                drawLines(4, "green");
+                            }
+                            else if(registroTeclas == 3){
+                                coordYClicks[contadorTeclas] = 210;
+                                firstClick = [742, 259];
+                                drawCircles("#e830d8", 4, firstClick);
+                                coordYClicks[count] = firstClick[1];
+                                drawLines(4, "green");
+                            }
+                            else if(registroTeclas == 4){
+                                coordYClicks[contadorTeclas] = 200;
+                                secondClick = [692, 184];
+                                drawCircles("#ff7700", 4, secondClick);
+                                coordYClicks[count] = secondClick[1];
+                                drawLines(4, "green");
+                            }
+                            else if(registroTeclas == 5){
+                                coordYClicks[contadorTeclas] = 210;
+                                firstClick = [584, 227];
+                                drawCircles("#e830d8", 4, firstClick);
+                                coordYClicks[count] = firstClick[1];
+                                drawLines(4, "green");
+                            }
+                            else if(registroTeclas == 6){
+                                coordYClicks[contadorTeclas] = 100;
+                                secondClick = [489, 124];
+                                drawCircles("#ff7700", 4, secondClick);
+                                coordYClicks[count] = secondClick[1];
+                                drawLines(4, "green");
+                            }
+                            else if(registroTeclas == 7){
+                                coordYClicks[contadorTeclas] = 200;
+                                firstClick = [397, 231];
+                                drawCircles("#e830d8", 4, firstClick);
+                                coordYClicks[count] = firstClick[1];
+                                drawLines(4, "green");
+                            }
+                            else if(registroTeclas == 8){
+                                coordYClicks[contadorTeclas] = 190;
+                                secondClick = [281, 191];
+                                drawCircles("#ff7700", 4, secondClick);
+                                coordYClicks[count] = secondClick[1];
+                                drawLines(4, "green");
+                            }
+                            else if(registroTeclas == 9){
+                                coordYClicks[contadorTeclas] = 190;
+                                firstClick = [234, 262];
+                                drawCircles("#e830d8", 4, firstClick);
+                                coordYClicks[count] = firstClick[1];
+                                drawLines(4, "green");
+                            }
+                            else if(registroTeclas == 'q' /*10*/){
+                                coordYClicks[contadorTeclas] = 190;
+                                secondClick = [114, 239];
+                                drawCircles("#ff7700", 4, secondClick);
+                                coordYClicks[count] = secondClick[1];
+                                drawLines(4, "green");
+                            }
+                            dibujoSolucionado = true;   
+                    }
+            }
+        });
 
         //Comprobamos que los clicks que tenemos en el array están en las coordenadas correctas
         $("#comprobar").click(function()
         {
             intentosContar++;
             sessionStorage.setItem("intentosContar",intentosContar);
-            console.log("Intentos = " + intentosContar);
      
             if(indiceImagen == 1)
             {
@@ -154,7 +333,7 @@ $(document).ready(function() {
                 }
             }
             else{
-                if(coordYClicks.length<11)
+                if(coordYClicks.length<10)
                 {
                     dibujoSolucionado = false; 
                 } 
@@ -382,14 +561,6 @@ var res = 0;
 $(document).ready(function() {
     console.log("Documento listo");
 
-    /*$("#draggable").draggable({
-        // opacity : 0.7, 
-        helper: "clone",
-        start: function (e, ui) {
-            $(ui.helper).addClass("drag-helper");
-            console.log(ui);
-        }
-    })*/
     
     $("#draggable").click(
         function () {
